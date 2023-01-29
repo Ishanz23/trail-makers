@@ -1,91 +1,46 @@
-import Image from 'next/image'
-import { Inter } from '@next/font/google'
-import styles from './page.module.css'
+import Image from "next/image";
+import searchImage from "../public/search.webp";
 
-const inter = Inter({ subsets: ['latin'] })
+import Header from '../components/Header';
 
 export default function Home() {
+  const states = [
+    { id: "1", name: "Himachal Pradesh" },
+    { id: "2", name: "Uttarakhand" },
+    { id: "3", name: "Kashmir" },
+    { id: "4", name: "Sikkim" },
+    { id: "5", name: "West Bengal" },
+  ];
+
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
+    <main className="flex flex-col items-center w-full min-h-screen">
+      <section className="flex-1 w-full">
+        <div className="relative flex items-center w-full h-96">
+          <div className="relative w-full h-full p-8">
+            <Image src={searchImage} alt="Search Placeholder" fill={true}></Image>
+            <input
+              type="text"
+              placeholder="Search"
+              className="absolute w-5/6 p-4 -translate-x-1/2 -translate-y-1/2 rounded-full md:w-1/2 placeholder-slate-50 bg-opacity-30 top-1/2 left-1/2 bg-slate-50"
             />
-          </a>
+          </div>
         </div>
-      </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-        <div className={styles.thirteen}>
-          <Image src="/thirteen.svg" alt="13" width={40} height={31} priority />
+        <div className="flex items-center justify-start p-8 text-2xl font-light tracking-wider md:px-16 md:py-8 md:text-4xl">
+          State wise treks
         </div>
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://beta.nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={inter.className}>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p className={inter.className}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={inter.className}>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p className={inter.className}>Explore the Next.js 13 playground.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={inter.className}>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p className={inter.className}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
+        <div className="flex flex-col items-center justify-center gap-8 px-8 lg:flex-row cards">
+          {states.map((state) => {
+            return (
+              <div
+                className="flex items-center justify-center w-full h-24 p-4 rounded-md md:h-48 md:w-48 card bg-gradient-to-t to-cyan-600 from-yellow-500"
+                key={state.id}
+              >
+                <span className="text-2xl md:text-lg">{state.name}</span>
+              </div>
+            );
+          })}
+        </div>
+      </section>
     </main>
-  )
+  );
 }
